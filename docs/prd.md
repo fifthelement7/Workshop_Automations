@@ -45,7 +45,9 @@ Our solution positions as the first comprehensive coaching quality assurance pla
 
 **FR10:** The system shall maintain internal team notes section for coach lead oversight and performance review
 
-**FR11:** The system shall export coaching data in standardized formats (JSON, CSV) for external system integration
+**FR11:** The system shall support multiple summary templates for different workshop types (group workshops, one-on-ones, specific coaching methodologies) with automatic template assignment and manual override capability
+
+**FR12:** The system shall export coaching data in standardized formats (JSON, CSV) for external system integration
 
 ### Non-Functional Requirements
 
