@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     access_token_expire_minutes: int = 30
 
     # CORS
-    allowed_origins: List[str] = ["http://localhost:3000", "http://localhost:8080"]
+    allowed_origins: str = "http://localhost:3000,http://localhost:8080"
 
     # AWS
     aws_access_key_id: Optional[str] = None
@@ -63,15 +63,15 @@ class Settings(BaseSettings):
     enable_email_notifications: bool = True
     enable_push_notifications: bool = False
 
-    class Config:
-        env_file = ".env"
-        case_sensitive = False
+    model_config = {
+        "env_file": ".env",
+        "case_sensitive": False,
+    }
 
-        @classmethod
-        def parse_env_var(cls, field_name: str, raw_val: str) -> Any:
-            if field_name == "allowed_origins":
-                return [x.strip() for x in raw_val.split(",")]
-            return raw_val
+    @property
+    def cors_origins(self) -> List[str]:
+        """Get CORS origins as a list."""
+        return [x.strip() for x in self.allowed_origins.split(",")]
 
 
 class DevelopmentSettings(Settings):
